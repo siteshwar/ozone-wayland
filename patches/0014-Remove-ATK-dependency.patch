@@ -23,10 +23,10 @@ index a11f773..f88a7e2 100644
  
  NativeViewAccessibility::~NativeViewAccessibility() {
 diff --git a/ui/views/view.cc b/ui/views/view.cc
-index 0b6efdf..2061be9 100644
+index 8dded15..ea53ae3 100644
 --- a/ui/views/view.cc
 +++ b/ui/views/view.cc
-@@ -1273,8 +1273,10 @@ bool View::ExceededDragThreshold(const gfx::Vector2d& delta) {
+@@ -1272,8 +1272,10 @@ bool View::ExceededDragThreshold(const gfx::Vector2d& delta) {
  // Accessibility----------------------------------------------------------------
  
  gfx::NativeViewAccessible View::GetNativeViewAccessible() {
@@ -37,8 +37,8 @@ index 0b6efdf..2061be9 100644
    if (native_view_accessibility_)
      return native_view_accessibility_->GetNativeObject();
    return NULL;
-@@ -1287,8 +1289,10 @@ void View::NotifyAccessibilityEvent(
-     ViewsDelegate::views_delegate->NotifyAccessibilityEvent(this, event_type);
+@@ -1286,8 +1288,10 @@ void View::NotifyAccessibilityEvent(
+     ViewsDelegate::GetInstance()->NotifyAccessibilityEvent(this, event_type);
  
    if (send_native_event && GetWidget()) {
 +#if !defined(OS_WIN) && !(defined(OS_LINUX) && !defined(OS_CHROMEOS))
